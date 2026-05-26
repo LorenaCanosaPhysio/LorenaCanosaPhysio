@@ -33,6 +33,9 @@
     .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .lang-toggle { border: 1px solid var(--border); background: var(--white); color: var(--ink); padding: 0.6rem 0.9rem; border-radius: var(--radius); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+    .lang-toggle:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
 
     /* ── HERO ── */
     #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
@@ -173,35 +176,38 @@
 
   <nav id="navbar">
     <a href="#hero" class="nav-logo">Lorena Canosa · Fisioterapia · PhD · MBA</a>
-    <ul class="nav-links">
-      <li><a href="#about">Sobre mí</a></li>
-      <li><a href="#expertise">Especialidad</a></li>
-      <li><a href="#highlights">Destacados</a></li>
-      <li><a href="#trajectory">Trayectoria</a></li>
-      <li><a href="#contact">Contacto</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#expertise" data-i18n="nav.expertise">Especialidad</a></li>
+        <li><a href="#highlights" data-i18n="nav.highlights">Destacados</a></li>
+        <li><a href="#trajectory" data-i18n="nav.trajectory">Trayectoria</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambiar idioma">EN</button>
+    </div>
   </nav>
 
   <section id="hero">
     <div class="hero-left">
-      <span class="hero-tag">Fisioterapia Deportiva · Women's Health<br />Ecografía Musculoesquelética</span>
+      <span class="hero-tag" data-i18n-html="hero.tag">Fisioterapia Deportiva · Women's Health<br />Ecografía Musculoesquelética</span>
       <h1 class="hero-name"><strong>Lorena <em>Canosa</em></strong></h1>
-      <p class="hero-desc">
+      <p class="hero-desc" data-i18n-html="hero.desc">
         Fisioterapeuta con más de 10 años de experiencia. Estoy especializada en el ámbito deportivo, especialmente en el <span class="highlight">deporte femenino</span>.<br />
          Mi trabajo se centra en la prevención de lesiones, la rehabilitación y el Return to Play, siempre fundamentado en la <span class="highlight">evidencia científica</span> y un enfoque biopsicosocial.<br />
         Combino la práctica clínica con la docencia universitaria en la Universidad Europea de Madrid, donde también lidero las <span class="highlight">relaciones internacionales</span> del Departamento de Fisioterapia.<br />
         Actualmente colaboro con diferentes Universidades e instituciones europeas, contribuyendo a la investigación y a la <span class="highlight">formación de posgrado</span>.<br /> Estoy finalizando un MBA para desarrollar mi expertise en gestión sanitaria y <span class="highlight">consultoría</span> estratégica.
       </p>
       <div class="hero-cta">
-        <a href="#expertise" class="btn-primary">Ver perfil</a>
-        <a href="#contact" class="btn-ghost">Contactar</a>
+        <a href="#expertise" class="btn-primary" data-i18n="hero.ctaPrimary">Ver perfil</a>
+        <a href="#contact" class="btn-ghost" data-i18n="hero.ctaSecondary">Contactar</a>
       </div>
     </div>
     <div class="hero-right">
       <img src="perfil.jpg" alt="Foto de perfil" class="hero-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
       <div class="hero-img-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; color:var(--blue); opacity:0.5;">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Añade tu foto (perfil.jpg)</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;" data-i18n="hero.placeholder">Añade tu foto (perfil.jpg)</p>
       </div>
       
       <div class="hero-social">
@@ -219,28 +225,28 @@
     <div class="about-image reveal">
       <img src="sobre-mi.jpg" alt="Sobre mí" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
       <div class="about-image-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; color:var(--blue); opacity:0.5;">
-        <span>Añade tu foto (sobre-mi.jpg)</span>
+        <span data-i18n="about.placeholder">Añade tu foto (sobre-mi.jpg)</span>
       </div>
     </div>
     <div class="about-text reveal">
-      <p class="section-label">Sobre mí</p>
-      <h2 class="section-title">Fisioterapia, Investigación y Docencia.<br /><span class="section-subtitle">De la ciencia a la práctica.</span></h2>
-      <p>Soy fisioterapeuta y doctora en Biomedicina. Mi trabajo se centra en conectar la evidencia científica con la práctica clínica para generar resultados reales.
+      <p class="section-label" data-i18n="about.label">Sobre mí</p>
+      <h2 class="section-title" data-i18n-html="about.title">Fisioterapia, Investigación y Docencia.<br /><span class="section-subtitle">De la ciencia a la práctica.</span></h2>
+      <p data-i18n="about.text">Soy fisioterapeuta y doctora en Biomedicina. Mi trabajo se centra en conectar la evidencia científica con la práctica clínica para generar resultados reales.
 Acompaño a pacientes y deportistas en todo el proceso, desde la prevención de lesiones hasta el Return to Play, integrando experiencia clínica, investigación y formación especializada.
 Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría para profesionales, instituciones sanitarias y organizaciones deportivas. Mi objetivo es trasladar el conocimiento científico a soluciones prácticas que mejoren la toma de decisiones, el rendimiento y la salud.
       </p>
       <div class="about-stats">
         <div>
-          <div class="stat-num">Experiencia</div>
-          <div class="stat-label">+10 años acompañando a pacientes y deportistas</div>
+          <div class="stat-num" data-i18n="about.stat1.title">Experiencia</div>
+          <div class="stat-label" data-i18n="about.stat1.label">+10 años acompañando a pacientes y deportistas</div>
         </div>
         <div>
-          <div class="stat-num">Estrategia</div>
-          <div class="stat-label">Asesoramiento especializado para pacientes, instituciones deportivas, centros de salud y equipos profesionales</div>
+          <div class="stat-num" data-i18n="about.stat2.title">Estrategia</div>
+          <div class="stat-label" data-i18n="about.stat2.label">Asesoramiento especializado para pacientes, instituciones deportivas, centros de salud y equipos profesionales</div>
         </div>
         <div>
-          <div class="stat-num">Global</div>
-          <div class="stat-label">Desarrollo de proyectos docentes y de colaboración entre instituciones europeas</div>
+          <div class="stat-num" data-i18n="about.stat3.title">Global</div>
+          <div class="stat-label" data-i18n="about.stat3.label">Desarrollo de proyectos docentes y de colaboración entre instituciones europeas</div>
         </div>
       </div>
     </div>
@@ -248,8 +254,8 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
 
   <section id="expertise">
     <div class="reveal">
-      <p class="section-label">Mis valores</p>
-      <h2 class="section-title">Especialización, <em>Compromiso</em><br />y experiencia</h2>
+      <p class="section-label" data-i18n="expertise.label">Mis valores</p>
+      <h2 class="section-title" data-i18n-html="expertise.title">Especialización, <em>Compromiso</em><br />y experiencia</h2>
     </div>
     <div class="expertise-grid">
       
@@ -265,16 +271,16 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
             <path d="M18 12h3"/>
           </svg>
         </div>
-        <h3>Ecografía</h3>
-        <p>Diagnóstico avanzado para el seguimiento objetivo de las lesiones. Herramienta que nos ayuda a tomar decisiones clínicas en la evolución de los deportistas de alto nivel. </p>
+        <h3 data-i18n="expertise.card1.title">Ecografía</h3>
+        <p data-i18n="expertise.card1.text">Diagnóstico avanzado para el seguimiento objetivo de las lesiones. Herramienta que nos ayuda a tomar decisiones clínicas en la evolución de los deportistas de alto nivel. </p>
       </div>
       
       <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
         </div>
-        <h3>Prevención y Return to Play</h3>
-        <p>Acompañamiento desde el momento de la lesión hasta la recuperación completa. Programas de pretemporada para valorar riesgos lesionales y minimizarlos. </p>
+        <h3 data-i18n="expertise.card2.title">Prevención y Return to Play</h3>
+        <p data-i18n="expertise.card2.text">Acompañamiento desde el momento de la lesión hasta la recuperación completa. Programas de pretemporada para valorar riesgos lesionales y minimizarlos. </p>
       </div>
 
       <div class="expertise-card reveal">
@@ -285,16 +291,16 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
             <path d="M10 22h4"/>
           </svg>
         </div>
-        <h3>Consultorías</h3>
-        <p>Asesoramiento especializado para instituciones deportivas, centros de salud y equipos profesionales que buscan implementar protocolos basados en la evidencia y optimizar su gestión clínica/p>
+        <h3 data-i18n="expertise.card3.title">Consultorías</h3>
+        <p data-i18n="expertise.card3.text">Asesoramiento especializado para instituciones deportivas, centros de salud y equipos profesionales que buscan implementar protocolos basados en la evidencia y optimizar su gestión clínica/p>
       </div>
 
       <div class="expertise-card reveal">
         <div class="expertise-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
-        <h3>Charlas, Cursos y Docencia</h3>
-        <p>Experiencia docente en grado y posgrado universitario. Creación de programas formativos internacionales y mentoría en el ámbito de la Fisioterapia Deportiva</p>
+        <h3 data-i18n="expertise.card4.title">Charlas, Cursos y Docencia</h3>
+        <p data-i18n="expertise.card4.text">Experiencia docente en grado y posgrado universitario. Creación de programas formativos internacionales y mentoría en el ámbito de la Fisioterapia Deportiva</p>
       </div>
 
     </div>
@@ -302,60 +308,60 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
 
   <section id="highlights">
     <div class="reveal">
-      <p class="section-label">Destacados</p>
-      <h2 class="section-title">Proyectos <em style="color: #ffffff;">recientes</em></h2>
-      <p class="highlights-intro">Una selección de mis últimos proyectos, contribuciones o logros profesionales más relevantes.</p>
+      <p class="section-label" data-i18n="highlights.label">Destacados</p>
+      <h2 class="section-title" data-i18n-html="highlights.title">Proyectos <em style="color: #ffffff;">recientes</em></h2>
+      <p class="highlights-intro" data-i18n="highlights.intro">Una selección de mis últimos proyectos, contribuciones o logros profesionales más relevantes.</p>
     </div>
     <div class="highlights-grid">
       
       <div class="highlight-card reveal">
         <div>
-          <span class="highlight-type">Docencia</span>
-          <h3>Docencia Internacional</h3>
-          <p>Clases de grado y posgrado universitario en Universidades como Alfonso X el Sabio, Savonia University of Applied Sciences en Finlandia o Lunex university en Luxemburgo</p>
+          <span class="highlight-type" data-i18n="highlights.card1.type">Docencia</span>
+          <h3 data-i18n="highlights.card1.title">Docencia Internacional</h3>
+          <p data-i18n="highlights.card1.text">Clases de grado y posgrado universitario en Universidades como Alfonso X el Sabio, Savonia University of Applied Sciences en Finlandia o Lunex university en Luxemburgo</p>
           <div class="highlight-date">2026</div>
         </div>
         <div class="project-photo-wrapper">
           <img src="proyecto-1.jpg" alt="Foto del proyecto 1" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="project-photo-placeholder" style="display:none;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4-4-5 5-2-2-4 4"/></svg>
-            <span>Sin foto publicada<br />Añade <strong>proyecto-1.jpg</strong> y actualiza el código si quieres mostrarla.</span>
+            <span data-i18n-html="highlights.card1.placeholder">Sin foto publicada<br />Añade <strong>proyecto-1.jpg</strong> y actualiza el código si quieres mostrarla.</span>
           </div>
-          <p class="project-photo-hint">Clase de ecografia de miembro inferior para el Máster en Fisioterapia Deportiva. UAX</p>
+          <p class="project-photo-hint" data-i18n="highlights.card1.hint">Clase de ecografia de miembro inferior para el Máster en Fisioterapia Deportiva. UAX</p>
         </div>
       </div>
 
       <div class="highlight-card reveal">
         <div>
-          <span class="highlight-type">Investigación</span>
-          <h3>Proyectos nacionales e internacionales</h3>
-          <p>Proyecto Europeo sobre aplicación de la Práctica Basada en la Evidencia (EBP) en fisioterapia</p>
+          <span class="highlight-type" data-i18n="highlights.card2.type">Investigación</span>
+          <h3 data-i18n="highlights.card2.title">Proyectos nacionales e internacionales</h3>
+          <p data-i18n="highlights.card2.text">Proyecto Europeo sobre aplicación de la Práctica Basada en la Evidencia (EBP) en fisioterapia</p>
           <div class="highlight-date"></div>
         </div>
         <div class="project-photo-wrapper">
           <img src="proyecto-2.jpg" alt="Foto del proyecto 2" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="project-photo-placeholder" style="display:none;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4-4-5 5-2-2-4 4"/></svg>
-            <span>Sin foto publicada<br />Añade <strong>proyecto-2.jpg</strong> y actualiza el código si quieres mostrarla.</span>
+            <span data-i18n-html="highlights.card2.placeholder">Sin foto publicada<br />Añade <strong>proyecto-2.jpg</strong> y actualiza el código si quieres mostrarla.</span>
           </div>
-          <p class="project-photo-hint">Reunión del grupo de Invetigación en el ENPHE spring Seminar, Aalborg, Dinamarca</p>
+          <p class="project-photo-hint" data-i18n="highlights.card2.hint">Reunión del grupo de Invetigación en el ENPHE spring Seminar, Aalborg, Dinamarca</p>
         </div>
       </div>
 
       <div class="highlight-card reveal">
         <div>
-          <span class="highlight-type">Clínica</span>
-          <h3>Prevención y tratamiento de lesiones. Return To Play</h3>
-          <p>Fisioterapia basada en la evidencia. Tratamiento con efoque biopsicosocial y con especial enfoque a la autonomía del paciente y la recuperación funcional </p>
+          <span class="highlight-type" data-i18n="highlights.card3.type">Clínica</span>
+          <h3 data-i18n="highlights.card3.title">Prevención y tratamiento de lesiones. Return To Play</h3>
+          <p data-i18n="highlights.card3.text">Fisioterapia basada en la evidencia. Tratamiento con efoque biopsicosocial y con especial enfoque a la autonomía del paciente y la recuperación funcional </p>
           <div class="highlight-date"></div>
         </div>
         <div class="project-photo-wrapper">
           <img src="proyecto-3.jpg" alt="Foto del proyecto 3" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="project-photo-placeholder" style="display:none;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4-4-5 5-2-2-4 4"/></svg>
-            <span>Sin foto publicada<br />Añade <strong>proyecto-3.jpg</strong> y actualiza el código si quieres mostrarla.</span>
+            <span data-i18n-html="highlights.card3.placeholder">Sin foto publicada<br />Añade <strong>proyecto-3.jpg</strong> y actualiza el código si quieres mostrarla.</span>
           </div>
-          <p class="project-photo-hint">Proyecto de Investigación sobre vendajes y movilidad de tobillo en relación con la prevención de lesiones deportivas</p>
+          <p class="project-photo-hint" data-i18n="highlights.card3.hint">Proyecto de Investigación sobre vendajes y movilidad de tobillo en relación con la prevención de lesiones deportivas</p>
         </div>
       </div>
 
@@ -364,51 +370,51 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
 
   <section id="trajectory">
     <div class="reveal">
-      <p class="section-label">Trayectoria</p>
-      <h2 class="section-title">Mi experiencia <em>laboral</em></h2>
+      <p class="section-label" data-i18n="trajectory.label">Trayectoria</p>
+      <h2 class="section-title" data-i18n-html="trajectory.title">Mi experiencia <em>laboral</em></h2>
     </div>
     <div class="traj-grid">
       
       <div class="traj-column reveal">
-        <h3>Experiencia Principal</h3>
+        <h3 data-i18n="trajectory.column1.title">Experiencia Principal</h3>
         
         <div class="traj-item">
           <div class="traj-dot"></div>
           <div class="traj-content">
-            <div class="traj-role">Profesora y Coordinadora de Proyectos Internacionales</div>
-            <div class="traj-place">Universidad Europea de Madrid</div>
-            <div class="traj-period">2022 - Actual</div>
+            <div class="traj-role" data-i18n="trajectory.item1.role">Profesora y Coordinadora de Proyectos Internacionales</div>
+            <div class="traj-place" data-i18n="trajectory.item1.place">Universidad Europea de Madrid</div>
+            <div class="traj-period" data-i18n="trajectory.item1.period">2022 - Actual</div>
           </div>
         </div>
 
         <div class="traj-item">
           <div class="traj-dot"></div>
           <div class="traj-content">
-            <div class="traj-role">Fisioterapeuta y directora de sede Serrano</div>
-            <div class="traj-place">Clínica de Fisioterapia H3</div>
-            <div class="traj-period">2019 - 2023</div>
+            <div class="traj-role" data-i18n="trajectory.item2.role">Fisioterapeuta y directora de sede Serrano</div>
+            <div class="traj-place" data-i18n="trajectory.item2.place">Clínica de Fisioterapia H3</div>
+            <div class="traj-period" data-i18n="trajectory.item2.period">2019 - 2023</div>
           </div>
         </div>
       </div>
 
       <div class="traj-column reveal">
-        <h3>Educación & Formación</h3>
+        <h3 data-i18n="trajectory.column2.title">Educación & Formación</h3>
         
         <div class="traj-item">
           <div class="traj-dot"></div>
           <div class="traj-content">
-            <div class="traj-role">Doctorado en Biomedicina y Ciencias de la Salud</div>
-            <div class="traj-place">Mención Cum Laude</div>
-            <div class="traj-period">2022</div>
+            <div class="traj-role" data-i18n="trajectory.item3.role">Doctorado en Biomedicina y Ciencias de la Salud</div>
+            <div class="traj-place" data-i18n="trajectory.item3.place">Mención Cum Laude</div>
+            <div class="traj-period" data-i18n="trajectory.item3.period">2022</div>
           </div>
         </div>
 
         <div class="traj-item">
           <div class="traj-dot"></div>
           <div class="traj-content">
-            <div class="traj-role">Máster en Fisioterapia Deportiva</div>
-            <div class="traj-place">Universidad Europea de Madrid</div>
-            <div class="traj-period">2017</div>
+            <div class="traj-role" data-i18n="trajectory.item4.role">Máster en Fisioterapia Deportiva</div>
+            <div class="traj-place" data-i18n="trajectory.item4.place">Universidad Europea de Madrid</div>
+            <div class="traj-period" data-i18n="trajectory.item4.period">2017</div>
           </div>
         </div>
       </div>
@@ -418,9 +424,9 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
 
   <section id="contact">
     <div class="reveal">
-      <p class="section-label">Contacto</p>
-      <h2 class="section-title">Hablemos</h2>
-      <p class="contact-sub">¿Tienes alguna propuesta, proyecto o simplemente quieres saludar? Escríbeme.</p>
+      <p class="section-label" data-i18n="contact.label">Contacto</p>
+      <h2 class="section-title" data-i18n="contact.title">Hablemos</h2>
+      <p class="contact-sub" data-i18n="contact.sub">¿Tienes alguna propuesta, proyecto o simplemente quieres saludar? Escríbeme.</p>
       <a href="mailto:lorena.canosa.c@gmail.com" class="contact-email">lorena.canosa.c@gmail.com</a>
     </div>
     <div class="contact-socials reveal">
@@ -440,11 +446,157 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
   </section>
 
   <footer>
-    <p>© 2025 Lorena Canosa Carro. Todos los derechos reservados.</p>
-    <p style="color: var(--ink-faint); font-size: 0.72rem;">Fisioterapia, Docencia e Investigación</p>
+    <p data-i18n="footer.copyright">© 2025 Lorena Canosa Carro. Todos los derechos reservados.</p>
+    <p style="color: var(--ink-faint); font-size: 0.72rem;" data-i18n="footer.tagline">Fisioterapia, Docencia e Investigación</p>
   </footer>
 
   <script>
+    const translations = {
+      es: {
+        nav: {
+          about: 'Sobre mí',
+          expertise: 'Especialidad',
+          highlights: 'Destacados',
+          trajectory: 'Trayectoria',
+          contact: 'Contacto'
+        },
+        hero: {
+          tag: 'Fisioterapia Deportiva · Women\'s Health<br />Ecografía Musculoesquelética',
+          desc: 'Fisioterapeuta con más de 10 años de experiencia. Estoy especializada en el ámbito deportivo, especialmente en el <span class="highlight">deporte femenino</span>.<br />Mi trabajo se centra en la prevención de lesiones, la rehabilitación y el Return to Play, siempre fundamentado en la <span class="highlight">evidencia científica</span> y un enfoque biopsicosocial.<br />Combino la práctica clínica con la docencia universitaria en la Universidad Europea de Madrid, donde también lidero las <span class="highlight">relaciones internacionales</span> del Departamento de Fisioterapia.<br />Actualmente colaboro con diferentes Universidades e instituciones europeas, contribuyendo a la investigación y a la <span class="highlight">formación de posgrado</span>.<br />Estoy finalizando un MBA para desarrollar mi expertise en gestión sanitaria y <span class="highlight">consultoría</span> estratégica.',
+          ctaPrimary: 'Ver perfil',
+          ctaSecondary: 'Contactar',
+          placeholder: 'Añade tu foto (perfil.jpg)'
+        },
+        about: {
+          label: 'Sobre mí',
+          title: 'Fisioterapia, Investigación y Docencia.<br /><span class="section-subtitle">De la ciencia a la práctica.</span>',
+          text: 'Soy fisioterapeuta y doctora en Biomedicina. Mi trabajo se centra en conectar la evidencia científica con la práctica clínica para generar resultados reales.\nAcompaño a pacientes y deportistas en todo el proceso, desde la prevención de lesiones hasta el Return to Play, integrando experiencia clínica, investigación y formación especializada.\nAdemás de mi labor asistencial, desarrollo proyectos docentes y de consultoría para profesionales, instituciones sanitarias y organizaciones deportivas. Mi objetivo es trasladar el conocimiento científico a soluciones prácticas que mejoren la toma de decisiones, el rendimiento y la salud.',
+          stat1: { title: 'Experiencia', label: '+10 años acompañando a pacientes y deportistas' },
+          stat2: { title: 'Estrategia', label: 'Asesoramiento especializado para pacientes, instituciones deportivas, centros de salud y equipos profesionales' },
+          stat3: { title: 'Global', label: 'Desarrollo de proyectos docentes y de colaboración entre instituciones europeas' },
+          placeholder: 'Añade tu foto (sobre-mi.jpg)'
+        },
+        expertise: {
+          label: 'Mis valores',
+          title: 'Especialización, <em>Compromiso</em><br />y experiencia',
+          card1: { title: 'Ecografía', text: 'Diagnóstico avanzado para el seguimiento objetivo de las lesiones. Herramienta que nos ayuda a tomar decisiones clínicas en la evolución de los deportistas de alto nivel.' },
+          card2: { title: 'Prevención y Return to Play', text: 'Acompañamiento desde el momento de la lesión hasta la recuperación completa. Programas de pretemporada para valorar riesgos lesionales y minimizarlos.' },
+          card3: { title: 'Consultorías', text: 'Asesoramiento especializado para instituciones deportivas, centros de salud y equipos profesionales que buscan implementar protocolos basados en la evidencia y optimizar su gestión clínica.' },
+          card4: { title: 'Charlas, Cursos y Docencia', text: 'Experiencia docente en grado y posgrado universitario. Creación de programas formativos internacionales y mentoría en el ámbito de la Fisioterapia Deportiva.' }
+        },
+        highlights: {
+          label: 'Destacados',
+          title: 'Proyectos <em style="color: #ffffff;">recientes</em>',
+          intro: 'Una selección de mis últimos proyectos, contribuciones o logros profesionales más relevantes.',
+          card1: { type: 'Docencia', title: 'Docencia Internacional', text: 'Clases de grado y posgrado universitario en Universidades como Alfonso X el Sabio, Savonia University of Applied Sciences en Finlandia o Lunex university en Luxemburgo', hint: 'Clase de ecografía de miembro inferior para el Máster en Fisioterapia Deportiva. UAX', placeholder: 'Sin foto publicada<br />Añade <strong>proyecto-1.jpg</strong> y actualiza el código si quieres mostrarla.' },
+          card2: { type: 'Investigación', title: 'Proyectos nacionales e internacionales', text: 'Proyecto Europeo sobre aplicación de la Práctica Basada en la Evidencia (EBP) en fisioterapia', hint: 'Reunión del grupo de Invetigación en el ENPHE spring Seminar, Aalborg, Dinamarca', placeholder: 'Sin foto publicada<br />Añade <strong>proyecto-2.jpg</strong> y actualiza el código si quieres mostrarla.' },
+          card3: { type: 'Clínica', title: 'Prevención y tratamiento de lesiones. Return To Play', text: 'Fisioterapia basada en la evidencia. Tratamiento con enfoque biopsicosocial y con especial enfoque a la autonomía del paciente y la recuperación funcional.', hint: 'Proyecto de Investigación sobre vendajes y movilidad de tobillo en relación con la prevención de lesiones deportivas', placeholder: 'Sin foto publicada<br />Añade <strong>proyecto-3.jpg</strong> y actualiza el código si quieres mostrarla.' }
+        },
+        trajectory: {
+          label: 'Trayectoria',
+          title: 'Mi experiencia <em>laboral</em>',
+          column1: { title: 'Experiencia Principal' },
+          column2: { title: 'Educación & Formación' },
+          item1: { role: 'Profesora y Coordinadora de Proyectos Internacionales', place: 'Universidad Europea de Madrid', period: '2022 - Actual' },
+          item2: { role: 'Fisioterapeuta y directora de sede Serrano', place: 'Clínica de Fisioterapia H3', period: '2019 - 2023' },
+          item3: { role: 'Doctorado en Biomedicina y Ciencias de la Salud', place: 'Mención Cum Laude', period: '2022' },
+          item4: { role: 'Máster en Fisioterapia Deportiva', place: 'Universidad Europea de Madrid', period: '2017' }
+        },
+        contact: { label: 'Contacto', title: 'Hablemos', sub: '¿Tienes alguna propuesta, proyecto o simplemente quieres saludar? Escríbeme.' },
+        footer: { copyright: '© 2025 Lorena Canosa Carro. Todos los derechos reservados.', tagline: 'Fisioterapia, Docencia e Investigación' }
+      },
+      en: {
+        nav: {
+          about: 'About me',
+          expertise: 'Expertise',
+          highlights: 'Highlights',
+          trajectory: 'Career',
+          contact: 'Contact'
+        },
+        hero: {
+          tag: 'Sports Physiotherapy · Women\'s Health<br />Musculoskeletal Ultrasound',
+          desc: 'Physiotherapist with 10+ years of experience. I specialize in sport, with a particular focus on <span class="highlight">women in sport</span>.<br />My work centers on injury prevention, rehabilitation and Return to Play, grounded in <span class="highlight">scientific evidence</span> and a biopsychosocial approach.<br />I combine clinical practice with university teaching at Universidad Europea de Madrid, where I also lead the <span class="highlight">international relations</span> of the Physiotherapy Department.<br />I currently collaborate with universities and institutions across Europe on research and <span class="highlight">postgraduate education</span>.<br />I am completing an MBA to strengthen my expertise in healthcare management and <span class="highlight">strategic consultancy</span>.',
+          ctaPrimary: 'View profile',
+          ctaSecondary: 'Contact',
+          placeholder: 'Add your photo (perfil.jpg)'
+        },
+        about: {
+          label: 'About me',
+          title: 'Physiotherapy, Research and Teaching.<br /><span class="section-subtitle">From science to practice.</span>',
+          text: 'I am a physiotherapist and PhD in Biomedicine. My work focuses on connecting scientific evidence with clinical practice to deliver real outcomes.\nI support patients and athletes throughout the process, from injury prevention to Return to Play, integrating clinical experience, research and specialized training.\nIn addition to my clinical work, I develop teaching and consultancy projects for professionals, healthcare institutions and sports organizations. My goal is to translate scientific knowledge into practical solutions that improve clinical decisions, performance and health.',
+          stat1: { title: 'Experience', label: '+10 years supporting patients and athletes' },
+          stat2: { title: 'Strategy', label: 'Specialized advice for patients, sports institutions, healthcare centers and professional teams' },
+          stat3: { title: 'Global', label: 'Development of teaching projects and collaborations between European institutions' },
+          placeholder: 'Add your photo (sobre-mi.jpg)'
+        },
+        expertise: {
+          label: 'My values',
+          title: 'Specialization, <em>Commitment</em><br />and experience',
+          card1: { title: 'Ultrasound', text: 'Advanced diagnostic support for objective lesion monitoring. A tool that helps guide clinical decisions in the evolution of high-level athletes.' },
+          card2: { title: 'Prevention and Return to Play', text: 'Support from the moment of injury to full recovery. Preseason programs to assess and reduce injury risk.' },
+          card3: { title: 'Consulting', text: 'Specialized advisory for sports institutions, healthcare centers and professional teams seeking evidence-based protocols and clinical management optimization.' },
+          card4: { title: 'Lectures, Courses and Teaching', text: 'University teaching experience at undergraduate and postgraduate level. Creation of international training programs and mentoring in Sports Physiotherapy.' }
+        },
+        highlights: {
+          label: 'Highlights',
+          title: 'Projects <em style="color: #ffffff;">recently</em>',
+          intro: 'A selection of my latest projects, contributions and most relevant professional achievements.',
+          card1: { type: 'Teaching', title: 'International Teaching', text: 'Undergraduate and postgraduate classes at institutions such as Alfonso X el Sabio, Savonia University of Applied Sciences in Finland, and Lunex University in Luxembourg', hint: 'Lower limb ultrasound class for the Master in Sports Physiotherapy. UAX', placeholder: 'No photo published<br />Add <strong>proyecto-1.jpg</strong> and update the code if you want to display it.' },
+          card2: { type: 'Research', title: 'National and international projects', text: 'European project on the application of Evidence-Based Practice (EBP) in physiotherapy', hint: 'Research group meeting at the ENPHE spring seminar, Aalborg, Denmark', placeholder: 'No photo published<br />Add <strong>proyecto-2.jpg</strong> and update the code if you want to display it.' },
+          card3: { type: 'Clinical', title: 'Injury prevention and treatment. Return To Play', text: 'Evidence-based physiotherapy. Treatment with a biopsychosocial approach and a strong focus on patient autonomy and functional recovery.', hint: 'Research project on taping and ankle mobility related to the prevention of sports injuries', placeholder: 'No photo published<br />Add <strong>proyecto-3.jpg</strong> and update the code if you want to display it.' }
+        },
+        trajectory: {
+          label: 'Career',
+          title: 'My <em>professional</em> experience',
+          column1: { title: 'Main Experience' },
+          column2: { title: 'Education & Training' },
+          item1: { role: 'Professor and Coordinator of International Projects', place: 'Universidad Europea de Madrid', period: '2022 - Present' },
+          item2: { role: 'Physiotherapist and director of Serrano clinic', place: 'Clínica de Fisioterapia H3', period: '2019 - 2023' },
+          item3: { role: 'Doctorate in Biomedicine and Health Sciences', place: 'Cum Laude mention', period: '2022' },
+          item4: { role: 'Master in Sports Physiotherapy', place: 'Universidad Europea de Madrid', period: '2017' }
+        },
+        contact: { label: 'Contact', title: 'Let\'s talk', sub: 'Do you have a proposal, a project, or simply want to say hello? Write to me.' },
+        footer: { copyright: '© 2025 Lorena Canosa Carro. All rights reserved.', tagline: 'Physiotherapy, Teaching and Research' }
+      }
+    };
+
+    const langToggle = document.getElementById('langToggle');
+    const storageKey = 'lorena-page-language';
+    let currentLang = localStorage.getItem(storageKey);
+    if (!['es', 'en'].includes(currentLang)) {
+      currentLang = 'es';
+    }
+
+    function applyTranslations(lang) {
+      const t = translations[lang];
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.getAttribute('data-i18n');
+        const value = key.split('.').reduce((acc, part) => acc?.[part], t);
+        if (typeof value === 'string') {
+          node.textContent = value;
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach((node) => {
+        const key = node.getAttribute('data-i18n-html');
+        const value = key.split('.').reduce((acc, part) => acc?.[part], t);
+        if (typeof value === 'string') {
+          node.innerHTML = value;
+        }
+      });
+
+      langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
+      langToggle.setAttribute('aria-label', lang === 'es' ? 'Cambiar idioma' : 'Change language');
+    }
+
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      localStorage.setItem(storageKey, currentLang);
+      applyTranslations(currentLang);
+    });
+
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -461,6 +613,7 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     reveals.forEach(el => observer.observe(el));
+    applyTranslations(currentLang);
   </script>
 </body>
 </html>
