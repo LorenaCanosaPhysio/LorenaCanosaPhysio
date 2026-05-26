@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[TU NOMBRE] — [TU PROFESIÓN]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Puedes cambiar el color principal aquí modificando el código hexadecimal */
+      --blue: #1A47CC; 
+      --blue-dark: #1238A8;
+      --blue-light: #E8EEFB;
+      --cream: #FAFAF8;
+      --white: #FFFFFF;
+      --ink: #111111;
+      --ink-soft: #444444;
+      --ink-faint: #888888;
+      --border: #E2E2DE;
+      --radius: 2px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(26,71,204,0.08); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; }
+    .hero-tag { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 5vw, 5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+    .hero-name em { font-style: italic; color: var(--blue); }
+    .hero-desc { font-size: 1rem; font-weight: 300; color: var(--ink-soft); max-width: 400px; line-height: 1.8; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+    .hero-cta { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.65s forwards; }
+    
+    .btn-primary { display: inline-block; background: var(--blue); color: white; padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: var(--radius); transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-ghost { display: inline-block; color: var(--ink-soft); padding: 0.85rem 2rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+    .hero-right { position: relative; background: var(--blue-light); overflow: hidden; }
+    .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0; animation: fadeIn 1s 0.4s forwards; }
+    
+    .hero-social { position: absolute; bottom: 2.5rem; right: 2.5rem; display: flex; gap: 1rem; }
+    .social-link { width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--ink); box-shadow: 0 2px 12px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s; }
+    .social-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,71,204,0.2); background: var(--blue); color: white; }
+
+    /* ── BASE Y SECCIONES ── */
+    section { padding: 7rem 4rem; }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--ink); margin-bottom: 1.5rem; }
+    .section-title em { font-style: italic; color: var(--blue); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-image { position: relative; aspect-ratio: 4/5; background: var(--blue-light); border-radius: var(--radius); overflow: hidden; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .about-image::after { content: ''; position: absolute; top: 1rem; left: 1rem; right: -1rem; bottom: -1rem; border: 2px solid var(--blue); border-radius: var(--radius); z-index: -1; opacity: 0.25; }
+    .about-text p { font-size: 1rem; font-weight: 300; color: var(--ink-soft); line-height: 1.9; margin-bottom: 1.5rem; }
+    .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--blue); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+
+    /* ── EXPERTISE ── */
+    #expertise { background: var(--white); }
+    .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .expertise-card { padding: 2.5rem 2rem; border: 1px solid var(--border); border-radius: var(--radius); position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+    .expertise-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .expertise-card:hover { border-color: transparent; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,71,204,0.1); }
+    .expertise-card:hover::before { transform: scaleX(1); }
+    .expertise-icon { width: 44px; height: 44px; background: var(--blue-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--blue); }
+    .expertise-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 0.75rem; line-height: 1.3; }
+    .expertise-card p { font-size: 0.85rem; font-weight: 300; color: var(--ink-faint); line-height: 1.7; }
+
+    /* ── HIGHLIGHTS ── */
+    #highlights { background: var(--ink); color: white; }
+    #highlights .section-label { color: #6B8FEC; }
+    #highlights .section-title { color: white; }
+    .highlights-intro { font-size: 0.9rem; color: rgba(255,255,255,0.5); max-width: 480px; margin-bottom: 3rem; font-weight: 300; }
+    .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .highlight-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 2rem; transition: background 0.3s, border-color 0.3s; }
+    .highlight-card:hover { background: rgba(26,71,204,0.2); border-color: rgba(26,71,204,0.5); }
+    .highlight-type { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); background: rgba(26,71,204,0.2); display: inline-block; padding: 0.25rem 0.6rem; border-radius: 2px; margin-bottom: 1rem; }
+    .highlight-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: white; margin-bottom: 0.6rem; }
+    .highlight-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 300; }
+    .highlight-date { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 1.2rem; letter-spacing: 0.05em; }
+
+    /* ── TRAJECTORY ── */
+    #trajectory { background: var(--cream); }
+    .traj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3.5rem; }
+    .traj-column h3 { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .traj-item { display: flex; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .traj-item:last-child { border-bottom: none; }
+    .traj-dot { width: 10px; height: 10px; background: var(--blue); border-radius: 50%; margin-top: 0.4rem; flex-shrink: 0; }
+    .traj-role { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .traj-place { font-size: 0.82rem; color: var(--ink-faint); margin-bottom: 0.15rem; }
+    .traj-period { font-size: 0.75rem; color: var(--blue); font-weight: 500; letter-spacing: 0.05em; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); text-align: center; }
+    .contact-sub { font-size: 1rem; font-weight: 300; color: var(--ink-soft); margin-bottom: 3rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .contact-email { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--blue); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; margin-bottom: 3rem; }
+    .contact-email:hover { border-color: var(--blue); }
+    .contact-socials { display: flex; justify-content: center; gap: 1.5rem; }
+    .contact-social-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s; }
+    .contact-social-link:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+    /* ── FOOTER ── */
+    footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 0.78rem; color: var(--ink-faint); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 5rem 2rem 3rem; }
+      .hero-right { height: 60vw; }
+      #about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+      .about-image { aspect-ratio: 16/9; }
+      #expertise { padding: 4rem 2rem; }
+      .expertise-grid { grid-template-columns: 1fr 1fr; }
+      #highlights { padding: 4rem 2rem; }
+      .highlights-grid { grid-template-columns: 1fr; }
+      #trajectory { padding: 4rem 2rem; }
+      .traj-grid { grid-template-columns: 1fr; gap: 2rem; }
+      #contact { padding: 4rem 2rem; }
+      footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      section { padding: 4rem 2rem; }
+    }
+    @media (max-width: 600px) {
+      .expertise-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">[TU NOMBRE]</a>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#expertise">Especialidad</a></li>
+      <li><a href="#highlights">Destacados</a></li>
+      <li><a href="#trajectory">Trayectoria</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-left">
+      <span class="hero-tag">[TU ESPECIALIDAD 1] · [ESPECIALIDAD 2] · [ESPECIALIDAD 3]</span>
+      <h1 class="hero-name">[TU NOMBRE]<br /><em>[TU APELLIDO]</em></h1>
+      <p class="hero-desc">
+        [Escribe aquí tu biografía breve. Ejemplo: Desarrollador especializado en aplicaciones web, diseño centrado en el usuario e inteligencia artificial con un enfoque global.]
+      </p>
+      <div class="hero-cta">
+        <a href="#expertise" class="btn-primary">Ver perfil</a>
+        <a href="#contact" class="btn-ghost">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="perfil.jpg" alt="Foto de perfil" class="hero-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="hero-img-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; color:var(--blue); opacity:0.5;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Añade tu foto (perfil.jpg)</p>
+      </div>
+      
+      <div class="hero-social">
+        <a href="[LINK DE TU LINKEDIN]" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="[LINK DE TU GITHUB/TWITTER/OTRO]" target="_blank" rel="noopener" class="social-link" title="Github">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-image reveal">
+      <img src="sobre-mi.jpg" alt="Sobre mí" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="about-image-placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; color:var(--blue); opacity:0.5;">
+        <span>Añade tu foto (sobre-mi.jpg)</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p class="section-label">Sobre mí</p>
+      <h2 class="section-title">[Tu propuesta de valor<br /><em>en una frase</em>]</h2>
+      <p>
+        [Tu primer párrafo de descripción. Habla sobre qué haces, cómo lo haces y cuál es tu enfoque general hacia tu profesión.]
+      </p>
+      <p>
+        [Tu segundo párrafo. Puedes incluir detalles sobre tu forma de trabajar, tus intereses profesionales secundarios o algo personal que añada valor a tu perfil.]
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">[Ej: 5+]</div>
+          <div class="stat-label">Años de exp.</div>
+        </div>
+        <div>
+          <div class="stat-num">[Ej: 20]</div>
+          <div class="stat-label">Proyectos</div>
+        </div>
+        <div>
+          <div class="stat-num">[Ej: 100%]</div>
+          <div class="stat-label">Compromiso</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <div class="reveal">
+      <p class="section-label">Mis Habilidades</p>
+      <h2 class="section-title">Especialización <em>técnica</em><br />y práctica</h2>
+    </div>
+    <div class="expertise-grid">
+      
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        </div>
+        <h3>[Habilidad 1]</h3>
+        <p>[Descripción corta sobre tu experiencia en esta área y cómo la aplicas.]</p>
+      </div>
+      
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <h3>[Habilidad 2]</h3>
+        <p>[Descripción corta sobre tu experiencia en esta área y cómo la aplicas.]</p>
+      </div>
+
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>[Habilidad 3]</h3>
+        <p>[Descripción corta sobre tu experiencia en esta área y cómo la aplicas.]</p>
+      </div>
+
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>[Habilidad 4]</h3>
+        <p>[Descripción corta sobre tu experiencia en esta área y cómo la aplicas.]</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="highlights">
+    <div class="reveal">
+      <p class="section-label">Portafolio / Destacados</p>
+      <h2 class="section-title">Proyectos <em>recientes</em></h2>
+      <p class="highlights-intro">Una selección de mis últimos proyectos, contribuciones o logros profesionales más relevantes.</p>
+    </div>
+    <div class="highlights-grid">
+      
+      <div class="highlight-card reveal">
+        <span class="highlight-type">[Tipo Ej: Proyecto Web]</span>
+        <h3>[Nombre de tu proyecto o logro]</h3>
+        <p>[Descripción breve de lo que hiciste, las tecnologías utilizadas y el resultado obtenido.]</p>
+        <div class="highlight-date">[Año]</div>
+      </div>
+
+      <div class="highlight-card reveal">
+        <span class="highlight-type">[Tipo Ej: Open Source]</span>
+        <h3>[Nombre de tu proyecto o logro]</h3>
+        <p>[Descripción breve de lo que hiciste, las tecnologías utilizadas y el resultado obtenido.]</p>
+        <div class="highlight-date">[Año]</div>
+      </div>
+
+      <div class="highlight-card reveal">
+        <span class="highlight-type">[Tipo Ej: Certificación]</span>
+        <h3>[Nombre de tu certificación/curso]</h3>
+        <p>[Descripción de la entidad emisora o qué aptitudes adquiriste en el proceso.]</p>
+        <div class="highlight-date">[Año]</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="trajectory">
+    <div class="reveal">
+      <p class="section-label">Trayectoria</p>
+      <h2 class="section-title">Mi experiencia <em>laboral</em></h2>
+    </div>
+    <div class="traj-grid">
+      
+      <div class="traj-column reveal">
+        <h3>Experiencia Principal</h3>
+        
+        <div class="traj-item">
+          <div class="traj-dot"></div>
+          <div class="traj-content">
+            <div class="traj-role">[Puesto actual o reciente]</div>
+            <div class="traj-place">[Nombre de la empresa]</div>
+            <div class="traj-period">[Año inicio] - Actual</div>
+          </div>
+        </div>
+
+        <div class="traj-item">
+          <div class="traj-dot"></div>
+          <div class="traj-content">
+            <div class="traj-role">[Puesto anterior]</div>
+            <div class="traj-place">[Nombre de la empresa]</div>
+            <div class="traj-period">[Año inicio] - [Año fin]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="traj-column reveal">
+        <h3>Educación & Formación</h3>
+        
+        <div class="traj-item">
+          <div class="traj-dot"></div>
+          <div class="traj-content">
+            <div class="traj-role">[Tu Grado / Título principal]</div>
+            <div class="traj-place">[Nombre de la Institución]</div>
+            <div class="traj-period">[Año graduación]</div>
+          </div>
+        </div>
+
+        <div class="traj-item">
+          <div class="traj-dot"></div>
+          <div class="traj-content">
+            <div class="traj-role">[Máster / Bootcamp / Curso]</div>
+            <div class="traj-place">[Nombre de la Institución]</div>
+            <div class="traj-period">[Año graduación]</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Contacto</p>
+      <h2 class="section-title">Hablemos</h2>
+      <p class="contact-sub">¿Tienes alguna propuesta, proyecto o simplemente quieres saludar? Escríbeme.</p>
+      <a href="mailto:[TU CORREO AQUÍ]" class="contact-email">[TU CORREO AQUÍ]</a>
+    </div>
+    <div class="contact-socials reveal">
+      <a href="[LINK LINKEDIN]" target="_blank" rel="noopener" class="contact-social-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="[LINK GITHUB]" target="_blank" rel="noopener" class="contact-social-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 [TU NOMBRE]. Todos los derechos reservados.</p>
+    <p style="color: var(--ink-faint); font-size: 0.72rem;">[TU PROFESIÓN O LEMA]</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
