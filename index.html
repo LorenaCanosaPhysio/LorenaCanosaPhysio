@@ -97,11 +97,9 @@
     .highlight-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 300; }
     .highlight-date { font-size: 0.72rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
     .project-photo-wrapper { margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem; }
-    .project-photo-preview { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); display: none; }
-    .project-upload-label { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.65rem 1rem; border-radius: var(--radius); background: rgba(255,255,255,0.08); color: white; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
-    .project-upload-label:hover { background: rgba(26,71,204,0.25); color: #fff; }
-    .project-upload-input { display: none; }
-    .project-upload-hint { font-size: 0.72rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
+    .project-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); }
+    .project-photo-placeholder { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius); border: 1px dashed rgba(255,255,255,0.2); background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); font-size: 0.75rem; text-align: center; padding: 1rem; }
+    .project-photo-hint { font-size: 0.72rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
 
     /* ── TRAJECTORY ── */
     #trajectory { background: var(--cream); }
@@ -296,10 +294,9 @@
           <div class="highlight-date">[Año]</div>
         </div>
         <div class="project-photo-wrapper">
-          <img class="project-photo-preview" alt="Foto del proyecto 1" />
-          <label class="project-upload-label" for="project-photo-1">Subir foto</label>
-          <input id="project-photo-1" class="project-upload-input" type="file" accept="image/*" />
-          <p class="project-upload-hint">Puedes seleccionar una imagen para este proyecto y verla en la tarjeta.</p>
+          <img src="proyecto-1.jpg" alt="Foto del proyecto 1" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="project-photo-placeholder" style="display:none;">Añade aquí tu foto y cambia el nombre del archivo a proyecto-1.jpg</div>
+          <p class="project-photo-hint">Cambia el nombre del archivo y la ruta en el `src` de la imagen para mostrar la foto que quieres.</p>
         </div>
       </div>
 
@@ -311,10 +308,9 @@
           <div class="highlight-date">[Año]</div>
         </div>
         <div class="project-photo-wrapper">
-          <img class="project-photo-preview" alt="Foto del proyecto 2" />
-          <label class="project-upload-label" for="project-photo-2">Subir foto</label>
-          <input id="project-photo-2" class="project-upload-input" type="file" accept="image/*" />
-          <p class="project-upload-hint">Puedes seleccionar una imagen para este proyecto y verla en la tarjeta.</p>
+          <img src="proyecto-2.jpg" alt="Foto del proyecto 2" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="project-photo-placeholder" style="display:none;">Añade aquí tu foto y cambia el nombre del archivo a proyecto-2.jpg</div>
+          <p class="project-photo-hint">Cambia el nombre del archivo y la ruta en el `src` de la imagen para mostrar la foto que quieres.</p>
         </div>
       </div>
 
@@ -326,10 +322,9 @@
           <div class="highlight-date">[Año]</div>
         </div>
         <div class="project-photo-wrapper">
-          <img class="project-photo-preview" alt="Foto del proyecto 3" />
-          <label class="project-upload-label" for="project-photo-3">Subir foto</label>
-          <input id="project-photo-3" class="project-upload-input" type="file" accept="image/*" />
-          <p class="project-upload-hint">Puedes seleccionar una imagen para este proyecto y verla en la tarjeta.</p>
+          <img src="proyecto-3.jpg" alt="Foto del proyecto 3" class="project-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="project-photo-placeholder" style="display:none;">Añade aquí tu foto y cambia el nombre del archivo a proyecto-3.jpg</div>
+          <p class="project-photo-hint">Cambia el nombre del archivo y la ruta en el `src` de la imagen para mostrar la foto que quieres.</p>
         </div>
       </div>
 
@@ -435,23 +430,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     reveals.forEach(el => observer.observe(el));
-
-    document.querySelectorAll('.project-upload-input').forEach(input => {
-      input.addEventListener('change', (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const preview = event.target.previousElementSibling.previousElementSibling;
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          preview.src = reader.result;
-          preview.style.display = 'block';
-        };
-
-        reader.readAsDataURL(file);
-      });
-    });
   </script>
 </body>
 </html>
