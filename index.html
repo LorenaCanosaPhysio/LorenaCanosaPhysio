@@ -34,8 +34,10 @@
     .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--blue); }
     .nav-actions { display: flex; align-items: center; gap: 1rem; }
-    .lang-toggle { border: 1px solid var(--border); background: var(--white); color: var(--ink); padding: 0.6rem 0.9rem; border-radius: var(--radius); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+    .lang-toggle { border: 1px solid var(--border); background: var(--white); color: var(--ink); padding: 0.6rem 0.9rem; border-radius: var(--radius); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s; display: inline-flex; align-items: center; gap: 0.55rem; }
     .lang-toggle:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+    .lang-flag { font-size: 0.95rem; line-height: 1; }
+    .lang-toggle-text { display: inline-block; }
 
     /* ── HERO ── */
     #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
@@ -184,7 +186,10 @@
         <li><a href="#trajectory" data-i18n="nav.trajectory">Trayectoria</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
       </ul>
-      <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambiar idioma">EN</button>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambiar idioma">
+        <span class="lang-flag" aria-hidden="true">🇪🇸</span>
+        <span class="lang-toggle-text">EN</span>
+      </button>
     </div>
   </nav>
 
@@ -361,7 +366,7 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-4-4-5 5-2-2-4 4"/></svg>
             <span data-i18n-html="highlights.card3.placeholder">Sin foto publicada<br />Añade <strong>proyecto-3.jpg</strong> y actualiza el código si quieres mostrarla.</span>
           </div>
-          <p class="project-photo-hint" data-i18n="highlights.card3.hint">Proyecto de Investigación sobre vendajes y movilidad de tobillo en relación con la prevención de lesiones deportivas</p>
+          <p class="project-photo-hint" data-i18n="highlights.card3.hint">Proyecto de Investigación sobre vendajes y lesiones de tobillo </p>
         </div>
       </div>
 
@@ -587,7 +592,10 @@ Además de mi labor asistencial, desarrollo proyectos docentes y de consultoría
         }
       });
 
-      langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
+      const flag = lang === 'es' ? '�🇧' : '🇪🇸';
+      const label = lang === 'es' ? 'EN' : 'ES';
+      langToggle.querySelector('.lang-flag').textContent = flag;
+      langToggle.querySelector('.lang-toggle-text').textContent = label;
       langToggle.setAttribute('aria-label', lang === 'es' ? 'Cambiar idioma' : 'Change language');
     }
 
